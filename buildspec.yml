@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+      - sudo yum install httpd -y
+  build:
+    commands:
+      - echo Building application...
+  post_build:
+    commands:
+      - echo Build complete!
+      - aws s3 cp index.html s3://my-pipeline-artifacts/
+artifacts:
+  files:
+    - index.html
